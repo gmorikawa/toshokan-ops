@@ -2,7 +2,7 @@ name: toshokan
 
 services:
   database:
-    image: postgres
+    image: postgres:18
     container_name: toshokan-database
     restart: always
     ports:
@@ -12,7 +12,7 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: example
     volumes:
-      - toshokan_database_mnt:/var/lib/postgresql/data
+      - toshokan_database_mnt:/var/lib/postgresql
     networks:
       application_network:
 
