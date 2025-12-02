@@ -1,0 +1,65 @@
+name: toshokan
+
+services:
+  database:
+    image: postgres
+    container_name: toshokan-database
+    restart: always
+    ports:
+      - 2010:5432
+    environment:
+      POSTGRES_DB: toshokan
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: example
+    volumes:
+      - toshokan_database_mnt:/var/lib/postgresql/data
+    networks:
+      application_network:
+
+  server:
+    build: ../toshokan
+    user: toshokan
+    container_name: toshokan-server
+    ports:
+      - 2020:8080
+    depends_on:
+      - database
+    env_file:
+      - ./server.env
+    volumes:
+      - toshokan_server_mnt:/toshokan/server/data
+    networks:
+      application_network:
+    
+  web:
+    build: ../toshokan-web
+    container_name: toshokan-web
+    ports:
+      - 2030:5173
+    depends_on:
+      - server
+    env_file:
+      - ./web.env
+    volumes:
+      - toshokan_web_mnt:/toshokan/web/data
+    networks:
+      application_network:
+
+volumes:
+  toshokan_server_mnt:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/server
+  toshokan_database_mnt:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/postgres
+  toshokan_web_mnt:
+
+networks:
+  application_network:
+    driver: bridge
