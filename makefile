@@ -11,9 +11,9 @@ container-down:
 	docker compose down
 
 remove-server-image:
-	docker images rm toshokan-server
+	docker image rm toshokan-server
 
 remove-web-image:
-	docker images rm toshokan-web
+	docker image rm toshokan-web
 
 remove-all-images: remove-server-image remove-web-image
