@@ -1,0 +1,19 @@
+{
+    "folders": [
+        {
+            "path": "../../toshokan",
+            "name": "Server"
+        },
+        {
+            "path": "../../toshokan-web",
+            "name": "Web"
+        },
+        {
+            "path": "..",
+            "name": "OPS"
+        }
+    ],
+    "settings": {
+        "java.configuration.updateBuildConfiguration": "interactive"
+    }
+}
