@@ -17,3 +17,5 @@ remove-web-image:
 	docker image rm toshokan-web
 
 remove-all-images: remove-server-image remove-web-image
+
+redeploy: container-down remove-all-images container-up
