@@ -18,4 +18,8 @@ remove-web-image:
 
 remove-all-images: remove-server-image remove-web-image
 
-redeploy: container-down remove-all-images container-up
+deploy-web: container-down remove-web-image container-up
+
+deploy-server: container-down remove-server-image container-up
+
+deploy: container-down remove-all-images container-up
