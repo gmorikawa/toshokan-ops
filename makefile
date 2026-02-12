@@ -31,3 +31,5 @@ backup-postgres:
 backup-server:
 	mkdir -p backup
 	tar -czvf backup/toshokan-files.tar.gz -C ./data/server .
+
+backup: backup-postgres backup-server
