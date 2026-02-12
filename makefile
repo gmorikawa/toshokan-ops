@@ -23,3 +23,11 @@ deploy-web: container-down remove-web-image container-up
 deploy-server: container-down remove-server-image container-up
 
 deploy: container-down remove-all-images container-up
+
+backup-postgres:
+	mkdir -p backup
+	docker exec toshokan-database pg_dump -U root toshokan > backup/toshokan-postgres.dump.sql
+
+backup-server:
+	mkdir -p backup
+	tar -czvf backup/toshokan-files.tar.gz -C ./data/server .
